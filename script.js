@@ -36,7 +36,7 @@ let promise3 = new Promise((resolve,reject)=>{
 let result = Promise.all([promise1,promise2,promise3]);
 result.then((resolvedPromises)=>{
 	tbody.innerHTML = "";
-	let sum ; 
+	let sum =0; 
 	resolvedPromises.forEach((element,index)=>{
 		sum += element;
 		let tr = document.createElement("tr");
