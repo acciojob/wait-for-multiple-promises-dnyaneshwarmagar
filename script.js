@@ -1,10 +1,9 @@
 //your JS code here. If required.
 let table = document.querySelector("table");
-let tbody = document.createElement("tbody");
+let tbody = document.getElementById("output");
 let tr = document.createElement("tr");
-tr.innerHTML = `<td colspan="2">Loading...</td>`;
+tr.innerHTML = `<td id="loading" colspan="2">Loading...</td>`;
 tbody.append(tr);
-table.append(tbody);
 
 let promise1 = new Promise((resolve,reject)=>{
 	const startTime = Date.now(); 
