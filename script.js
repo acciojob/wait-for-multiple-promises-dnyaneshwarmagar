@@ -12,7 +12,7 @@ let promise1 = new Promise((resolve,reject)=>{
 		const endTime = Date.now(); 
       const timeTaken = (endTime - startTime) / 1000; 
 		resolve(timeTaken)
-	},1000)
+	},1500)
 });
 
 let promise2 = new Promise((resolve,reject)=>{
@@ -30,15 +30,15 @@ let promise3 = new Promise((resolve,reject)=>{
 		const endTime = Date.now(); 
       const timeTaken = (endTime - startTime) / 1000; 
 		resolve(timeTaken)
-	},3000)
+	},2500)
 });
 
 let result = Promise.all([promise1,promise2,promise3]);
 result.then((resolvedPromises)=>{
 	tbody.innerHTML = "";
-	let sum =0; 
+	let maxTime =Math.max(...resolvedPromises); 
 	resolvedPromises.forEach((element,index)=>{
-		sum += element;
+	
 		let tr = document.createElement("tr");
 tr.innerHTML = `<td>Promise ${index+1}</td>
 <td>${element}</td>
@@ -48,12 +48,12 @@ tr.innerHTML = `<td>Promise ${index+1}</td>
 
 	let tr = document.createElement("tr");
 tr.innerHTML = `<td>Total</td>
-<td>${sum}</td>
+<td>${maxTime}</td>
 `;
 		tbody.append(tr);
 	
+console.log(resolvedPromises);
 })
-console.log(result);
 
 
 
