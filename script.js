@@ -2,7 +2,8 @@
 let table = document.querySelector("table");
 let tbody = document.getElementById("output");
 let tr = document.createElement("tr");
-tr.innerHTML = `<td id="loading" colspan="2">Loading...</td>`;
+tr.setAttribute("id", "loading")
+tr.innerHTML = `<td colspan="2">Loading...</td>`;
 tbody.append(tr);
 
 let promise1 = new Promise((resolve,reject)=>{
@@ -35,13 +36,22 @@ let promise3 = new Promise((resolve,reject)=>{
 let result = Promise.all([promise1,promise2,promise3]);
 result.then((resolvedPromises)=>{
 	tbody.innerHTML = "";
+	let sum ; 
 	resolvedPromises.forEach((element,index)=>{
+		sum += element;
 		let tr = document.createElement("tr");
 tr.innerHTML = `<td>Promise ${index+1}</td>
-<td>${parseInt(element)}</td>
+<td>${element}</td>
 `;
 		tbody.append(tr);
-	})
+	});
+
+	let tr = document.createElement("tr");
+tr.innerHTML = `<td>Total</td>
+<td>${sum}</td>
+`;
+		tbody.append(tr);
+	
 })
 console.log(result);
 
